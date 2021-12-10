@@ -1,0 +1,73 @@
+<wxs module="util" src="../util.wxs" />
+<view class="container">
+  <view class="flex items-center justify-between w-100">
+    <view class="form-group flex-1 mr-0">
+      <view class="form-cell inline">
+        <view class="form-label">姓名</view>
+        <input class="form-cell_input input-style" placeholder="请输入姓名" placeholder-class="form-cell_title-placeholder"
+          bindinput="onNameInput" value="{{name}}"/>
+      </view>
+      <view class="form-cell inline">
+        <view class="form-label">身份证</view>
+        <input class="form-cell_input input-style" placeholder="请输入身份证号" placeholder-class="form-cell_title-placeholder"
+          bindinput="onIdInput" value="{{id}}" />
+      </view>
+    </view>
+    <view class="px-10" bindtap="ocr">
+      <mp-icon type="filled" icon="camera" color="black" size="{{30}}"></mp-icon>
+    </view>
+  </view>
+  <view class="form-group">
+    <view class="form-cell inline">
+      <view class="form-label">性别</view>
+      <radio-group class="flex items-center" bindchange="radiochange">
+        <radio value='男' checked="{{gender === '男'}}"  color='#090305'>男</radio>
+        <radio value='女' checked="{{gender === '女'}}" color='#090305' style="margin-left: 30rpx;">女</radio>
+      </radio-group>
+    </view>
+  </view>
+  <view class="form-group">
+    <view class="form-cell inline" wx:if="{{showSwitch}}">
+      <view>居住地址和身份证地址保持一致</view>
+      <switch checked="{{sameAddr}}" bindchange="onSwitchChange" style="margin-left: 30rpx;"/>
+    </view>
+    <view class="form-cell inline" wx:if="{{!sameAddr}}">
+      <view class="form-label">居住地址</view>
+      <picker mode="region" bindchange="onChooseRegion" class="picker-region input-style {{ regionName[0] ? '' : 'placeholder-style' }}">
+        {{ (regionName[0] + regionName[1] + regionName[2]) || '请选择' }}
+      </picker>
+      <picker mode="region" bindchange="onChooseRegion">
+        <image class="selector" src="../../images/add/next.png" />
+      </picker>
+    </view>
+    <view class="form-cell inline">
+      <view class="form-label">详细地址</view>
+      <textarea class="form-cell_input textarea input-style" placeholder="请输入详细地址" placeholder-class="form-cell_title-placeholder"
+        bindinput="onAddressInput" value="{{detailAddress}}" />
+    </view>
+  </view>
+  <view class="form-group">
+    <view class="form-cell inline">
+      <view class="form-label">社区医院</view>
+      <picker range="{{hospitals}}" bindchange="onChooseHospital" class="picker-region input-style {{ hospital ? '' : 'placeholder-style' }}">
+        {{ hospital || '请选择' }}
+      </picker>
+      <picker range="{{hospitals}}" bindchange="onChooseHospital">
+        <image class="selector" src="../../images/add/next.png" />
+      </picker>
+    </view>
+    <view class="form-cell inline">
+      <view class="form-label">体检项目</view>
+      <picker range="{{items}}" bindchange="onChooseItem" class="picker-region input-style {{ item ? '' : 'placeholder-style' }}">
+        {{ item || '请选择' }}
+      </picker>
+      <picker range="{{items}}" bindchange="onChooseItem">
+        <image class="selector" src="../../images/add/next.png" />
+      </picker>
+    </view>
+  </view>
+  <view class="footer">
+    <view class="reset" bindtap="reset">重置</view>
+    <view class="save" bindtap="save">保存</view>
+  </view>
+</view>

@@ -1,0 +1,6 @@
+<view class="camera-panel">
+  <camera class="camera-view" device-position="back" flash="off" binderror="error" style="width: 90%; height: 80vh;"></camera>
+  <view class="camera-btn-warpper">
+    <view class="camera-btn" bindtap="takePhoto">拍照识别</view>
+  </view>
+</view>

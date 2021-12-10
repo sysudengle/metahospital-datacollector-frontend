@@ -1,0 +1,35 @@
+<wxs module="util" src="../util.wxs" />
+
+<view class="container">
+  <mp-tabs
+    class="tabs-view"
+    tabs="{{tabs}}" 
+    activeTab="{{activeTab}}" 
+    swiperClass="weui-tabs-swiper"
+    bindchange="onTabChange"
+    activeClass="tab-bar-title__selected"
+  >
+    <block wx:for="{{renderList}}" wx:key="index">
+      <view wx:if="{{item.length > 0}}" class="form-group {{index > 0 ? 'finished' : ''}}" slot="tab-content-{{index}}">
+        <view class="form-cell" wx:for="{{item}}" wx:for-index="idx" wx:for-item="obj" wx:key="idx">
+          <mp-slideview data-index='{{idx}}'>
+            <view class="slide" data-index="{{idx}}" bindtap="toDetailPage">
+              <view class="todo-info">
+                <view class="todo-info_title">姓名：{{obj.name}}</view>
+                <view class="todo-info_desc">身份证：{{obj.id}}</view>
+                <view class="todo-info_desc">{{obj.hospital}}</view>
+                <view class="todo-info_desc">{{obj.item}}</view>
+              </view>
+            </view>
+          </mp-slideview>
+        </view>
+      </view>
+      <view wx:else>
+        <image class="background" src="../../images/list/background.png" mode="aspectFit" />
+        <view class="title">暂无数据</view>
+        <view class="subtitle">请点击下方按钮进行添加</view>
+      </view>
+    </block>
+  </mp-tabs>
+  <footer></footer>
+</view>
