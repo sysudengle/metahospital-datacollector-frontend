@@ -1,9 +1,14 @@
 {
   "pages": [
-    "pages/list/index",
-    "pages/add/index",
-    "pages/detail/index",
-    "pages/ocr/index"
+    "pages/index/index",
+    "pages/ocr/index",
+    "pages/user/index/index",
+    "pages/user/booking/index",
+    "pages/user/profile/index",
+    "pages/user/mine/index",
+    "pages/user/qr/index",
+    "pages/doctor/mine/index",
+    "pages/doctor/index/index"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
@@ -15,6 +20,11 @@
   "sitemapLocation": "sitemap.json",
   "style": "v2",
   "usingComponents": {
+    "mp-form-page": "./miniprogram_npm/weui-miniprogram/form-page/form-page",
+    "mp-form": "./miniprogram_npm/weui-miniprogram/form/form",
+    "mp-toptips": "./miniprogram_npm/weui-miniprogram/toptips/toptips",
+    "mp-cells": "./miniprogram_npm/weui-miniprogram/cells/cells",
+    "mp-cell": "./miniprogram_npm/weui-miniprogram/cell/cell",
     "mp-icon": "./miniprogram_npm/weui-miniprogram/icon/icon"
   }
 }

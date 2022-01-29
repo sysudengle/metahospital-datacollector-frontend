@@ -19,7 +19,7 @@
   margin: auto;
   margin-top: 2vh;
   color: white;
-  background: #353535;
+  background: #57bead;
   border-radius: 4rpx;
   text-align: center;
 }

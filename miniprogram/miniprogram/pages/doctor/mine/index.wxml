@@ -1,0 +1,14 @@
+<view class="form-group" style="margin-top: 80px;">
+  <easy-view cus="cus-list">
+    <e-base-list
+      wx:for="{{list}}"
+      wx:key="index"
+      id="{{index}}"
+      title="{{item.title}}"
+      lineColor='{{item.lineColor}}'
+      dat-key="{{item.key}}"
+      bindtap="onTap">
+    </e-base-list>
+  </easy-view>
+</view>
+<custom-tab-bar active="0"></custom-tab-bar>

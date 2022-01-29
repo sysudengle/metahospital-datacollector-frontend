@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "easy-view": "/components/base/enhance_view/enhance_view",
+    "e-base-list": "/components/list/base_list/base_list",
+    "custom-tab-bar": "/custom-tab-bar/index"
+  },
+  "navigationBarTitleText": "个人中心"
+}

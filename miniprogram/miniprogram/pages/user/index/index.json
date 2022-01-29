@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "e-icon": "/components/base/icon/icon",
+    "e-suspension-button": "/components/button/suspension_button/suspension_button",
+    "custom-tab-bar": "/custom-tab-bar/index"
+  },
+  "navigationBarTitleText": ""
+}

@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "e-icon": "/components/base/icon/icon",
+    "e-suspension-button": "/components/button/suspension_button/suspension_button"
+  },
+  "navigationBarTitleText": "体检预约"
+}

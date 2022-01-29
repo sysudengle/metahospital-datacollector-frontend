@@ -1,0 +1,142 @@
+<view class="page">
+  <view wx:if="{{type == '1'}}">
+    <!-- 医生微信授权登录 -->
+    <view class="login-container" wx:if="{{doctorLoginType == '1'}}">
+      <mp-form-page>
+        <mp-form id="form" rules="{{rules}}" models="{{formData}}">
+          <mp-cells title="医务人员微信授权登录">
+            <label>
+              <mp-cell ext-class="weui-cell_select weui-cell_select-after">
+                <view slot="title" class="weui-label">社区医院</view>
+                <picker bindchange="bindPickerChange" value="{{selectIndex}}" range="{{hospitals}}" range-key="hospitalName">
+                  <view class="weui-select">{{hospitals[selectIndex].hospitalName || '请选择'}}</view>
+                </picker>
+              </mp-cell>
+            </label>
+            <label>
+              <mp-cell ext-class="weui-cell_input">
+                <view slot="title" class="weui-label">员工工号</view>
+                <input class="weui-input" placeholder="请输入工号" />
+              </mp-cell>
+            </label>
+          </mp-cells>
+        </mp-form>
+        <view class="btn-wrapper" slot="button">
+          <button class="weui-btn" type="primary" mark:infokey="doctor" bindtap="submitForm">登录</button>
+        </view>
+      </mp-form-page>
+    </view>
+    <!-- 医生账号密码登录 -->
+    <view class="login-container" wx:elif="{{doctorLoginType == '2'}}">
+      <mp-form-page>
+        <mp-form id="form" rules="{{rules}}" models="{{formData}}">
+          <mp-cells title="医务人员账号密码登录">
+            <label>
+              <mp-cell ext-class="weui-cell_select weui-cell_select-after">
+                <view slot="title" class="weui-label">社区医院</view>
+                <picker bindchange="bindPickerChange" value="{{selectIndex}}" range="{{hospitals}}" range-key="hospitalName">
+                  <view class="weui-select">{{hospitals[selectIndex].hospitalName || '请选择'}}</view>
+                </picker>
+              </mp-cell>
+            </label>
+            <label>
+              <mp-cell ext-class="weui-cell_input">
+                <view slot="title" class="weui-label">账号</view>
+                <input class="weui-input" placeholder="请输入账号" />
+              </mp-cell>
+            </label>
+            <label>
+              <mp-cell ext-class="weui-cell_input">
+                <view slot="title" class="weui-label">密码</view>
+                <input class="weui-input" type="password" placeholder="请输入密码" />
+              </mp-cell>
+            </label>
+          </mp-cells>
+        </mp-form>
+        <view class="btn-wrapper" slot="button">
+          <button class="weui-btn" type="primary" mark:infokey="doctor" bindtap="submitForm">登录</button>
+        </view>
+      </mp-form-page>
+    </view>
+    <view class="doctor-entry-type" wx:else>
+      <e-icon-list
+        margin="40"
+        title="微信授权登录"
+        data-type="1"
+        bind:listtap="doctorLogin"
+      >
+        <view slot="icon">
+          <e-icon name="setup" size="24px" color="#36BCBC"/>
+        </view>
+      </e-icon-list>
+      <view class="gap-12"></view>
+      <e-icon-list
+        margin="40"
+        title="账号密码登录"
+        data-type="2"
+        bind:listtap="doctorLogin"
+      >
+        <view slot="icon">
+          <e-icon name="setup" size="24px" color="#36BCBC"/>
+        </view>
+      </e-icon-list>
+    </view>
+  </view>
+  <view class="login-container" wx:elif="{{type == '2'}}">
+    <mp-form-page>
+      <mp-form id="form" rules="{{rules}}" models="{{formData}}">
+        <mp-cells>
+          <label>
+            <mp-cell ext-class="weui-cell_select weui-cell_select-after">
+              <view slot="title" class="weui-label">社区医院</view>
+              <picker bindchange="bindPickerChange" value="{{selectIndex}}" range="{{hospitals}}" range-key="hospitalName">
+                <view class="weui-select">{{hospitals[selectIndex].hospitalName || '请选择'}}</view>
+              </picker>
+            </mp-cell>
+          </label>
+        </mp-cells>
+      </mp-form>
+      <view class="btn-wrapper" slot="button">
+        <button class="weui-btn" type="primary" mark:infokey="user" bindtap="submitForm">确定</button>
+      </view>
+    </mp-form-page>
+  </view>
+  <view class="login-entry-wrap" wx:else>
+    <view class="icon-box">
+      <e-icon name="share" size="128px" color="#60BABC"/>
+    </view>
+    <e-icon-list
+      title="受检用户"
+      detail="体验用户登录入口"
+      data-type="2"
+      bind:listtap="entry"
+    >
+      <view class="icon-bg" slot="icon">
+        <image class="icon-img" src="/imgs/person.png"></image>
+      </view>
+      <e-enhance-icon
+        slot="right"
+        width="20"
+        height="40"
+        src="/imgs/back.png">
+      </e-enhance-icon>
+    </e-icon-list>
+    <view class="gap-12"></view>
+    <e-icon-list
+      title="医务人员"
+      detail="医务人员登录入口"
+      data-type="1"
+      bind:listtap="entry"
+    >
+      <view class="icon-bg" slot="icon">
+        <image class="icon-img" src="/imgs/doctor.png"></image>
+      </view>
+      <e-enhance-icon
+        slot="right"
+        width="20"
+        height="40"
+        src="/imgs/back.png">
+      </e-enhance-icon>
+    </e-icon-list>
+  </view>
+</view>

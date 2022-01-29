@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+    "e-icon": "/components/base/icon/icon",
+    "e-icon-list": "/components/list/icon_list/icon_list",
+    "e-head-portrait": "/components/base/head_portrait/head_portrait",
+    "e-base-button": "/components/button/base_button/base_button",
+    "e-enhance-icon": "/components/base/enhance_icon/enhance_icon",
+    "e-enhance-view": "/components/base/enhance_view/enhance_view"
+  }
+}

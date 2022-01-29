@@ -1,0 +1,34 @@
+.login-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+  color: var(--weui-FG-0);
+}
+.login-entry-wrap {
+  padding-top: 40px;
+}
+.icon-bg {
+  background-color: rgb(87, 190, 173);
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.icon-bg .icon-img {
+  width: 33px;
+  height: 31px;
+}
+.icon-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.doctor-entry-type {
+  padding-top: 120px;
+}

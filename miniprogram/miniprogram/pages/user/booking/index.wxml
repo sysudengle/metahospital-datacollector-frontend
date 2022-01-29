@@ -1,0 +1,36 @@
+<view class="container">
+  <e-suspension-button 
+    width="120"
+    height="120"
+    imgMargin="38"
+    color="rgba(87, 190, 173, 1)"
+    theme="shine2"
+    right="0"
+    bottom="280"
+    text="预约"
+    bind:buttontap="add"
+  >
+  </e-suspension-button >
+  <view wx:if="{{bookings.length > 0}}" class="form-group">
+    <view class="form-cell" wx:for="{{bookings}}" wx:for-index="idx" wx:for-item="obj" wx:key="idx">
+      <mp-slideview data-index='{{idx}}'>
+        <view class="slide" data-index="{{idx}}" data-id="{{obj.bookingId}}" bindtap="toQrDetail">
+          <view class="todo-info">
+            <view class="todo-info_title">
+              <text class="combo-item" wx:for="{{obj.comboDtos}}" wx:key="index">{{ item.name }}</text>
+            </view>
+            <view class="todo-info_desc">{{ obj.dateTime }}</view>
+          </view>
+          <view class="main-color">{{ obj.bookingStatus }}</view>
+        </view>
+      </mp-slideview>
+    </view>
+  </view>
+  <view wx:else>
+    <view class="icon-box">
+      <image class="background" src="/imgs/list/background.png" mode="aspectFit" />
+      <view class="title">暂无数据</view>
+      <view class="subtitle">请点击下方按钮进行添加</view>
+    </view>
+  </view>
+</view>

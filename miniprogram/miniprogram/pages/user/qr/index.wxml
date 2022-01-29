@@ -1,0 +1,26 @@
+
+<view class="container">
+  <canvas class='canvas' canvas-id='canvas' bindlongtap='save'></canvas>
+</view>
+<view class="info-wrapper" wx:if="{{booking && profile}}">
+  <view class="form-group">
+    <view class="form-cell">
+      <mp-slideview>
+        <view class="slide">
+          <view class="todo-info">
+            <view class="todo-info_title">
+              {{ profile.name || profile.personalID }}
+            </view>
+            <view class="todo-info_desc">{{ profile.personalID }}</view>
+            <view class="todo-info_desc">{{ profile.gender === 'Male' ? '男' : '女' }}</view>
+            <view class="todo-info_desc">{{ profile.homeAddress }}</view>
+            <view class="todo-info_desc">
+              <text class="combo-item" wx:for="{{booking.comboDtos}}" wx:key="index">{{ item.name }}</text>
+            </view>
+            <view class="todo-info_desc">{{ booking.dateTime }}</view>
+          </view>
+        </view>
+      </mp-slideview>
+    </view>
+  </view>
+</view>

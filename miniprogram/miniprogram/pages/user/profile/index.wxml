@@ -1,0 +1,39 @@
+
+<view class="container">
+  <view class="flex items-center justify-between w-100">
+    <view class="form-group flex-1 mr-0">
+      <view class="form-cell inline">
+        <view class="form-label">姓名</view>
+        <input class="form-cell_input input-style" placeholder="请通过拍照识别获取姓名" placeholder-class="form-cell_title-placeholder"
+          disabled value="{{name}}"/>
+      </view>
+      <view class="form-cell inline">
+        <view class="form-label">身份证</view>
+        <input class="form-cell_input input-style" placeholder="请通过拍照识别获取身份证号" placeholder-class="form-cell_title-placeholder"
+          disabled value="{{id}}" />
+      </view>
+    </view>
+    <view class="px-10" bindtap="ocr">
+      <mp-icon type="filled" icon="camera" color="black" size="{{30}}"></mp-icon>
+    </view>
+  </view>
+  <view class="form-group">
+    <view class="form-cell inline">
+      <view class="form-label">性别</view>
+      <radio-group class="flex items-center">
+        <radio value='男' checked="{{gender === '男'}}" disabled color='#090305'>男</radio>
+        <radio value='女' checked="{{gender === '女'}}" disabled color='#090305' style="margin-left: 30rpx;">女</radio>
+      </radio-group>
+    </view>
+  </view>
+  <view class="form-group">
+    <view class="form-cell inline" style="align-items: flex-start;">
+      <view class="form-label">居住地址</view>
+      <textarea class="form-cell_input textarea input-style" placeholder="请输入详细地址" placeholder-class="form-cell_title-placeholder"
+        bindinput="onAddressInput" value="{{addr}}" />
+    </view>
+  </view>
+  <view class="btn-wrapper">
+    <button class="weui-btn" type="primary" bindtap="save">确定</button>
+  </view>
+</view>

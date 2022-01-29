@@ -1,15 +1,16 @@
+import API from './common/api';
+import requestService from './common/request';
+
 App({
+  globalData: {
+    ocr: null,
+    openId: null,
+    userId: null,
+    hospitals: [],
+  },
   async onLaunch() {
     this.initcloud()
-
-    this.globalData = {
-      // 用于存储待办记录的集合名称
-      collection: 'todo',
-      // 最大文件上传数量
-      fileLimit: 2,
-      // ocr数据
-      ocr: null,
-    }
+    this.login()
   },
 
   flag: false,
@@ -95,5 +96,20 @@ App({
     })
     if (openid !== "") return openid
     return fromopenid
+  },
+
+  async login() {
+    const data = await wx.login();
+    console.log(data);
+    const resp = await requestService.request({
+      url: API.API_LOGIN,
+      method: 'POST',
+      data: {
+        wechatJsCode: data?.code
+      }
+    });
+    console.log('[auth info]', resp);
+    this.globalData.openId = resp?.data?.openId;
+    this.globalData.userId = resp?.data?.userId;
   }
 })
