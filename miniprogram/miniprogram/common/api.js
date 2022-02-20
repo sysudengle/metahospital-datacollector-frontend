@@ -1,4 +1,4 @@
-const API_PRE = 'http://h.test.com/api/'; // 默认前缀
+const API_PRE = 'https://maxgo.cc/api/'; // 默认前缀
 
 export default {
   API_PRE,
