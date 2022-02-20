@@ -75,7 +75,7 @@ Page({
         profileInfoDto: {
           hospitalId: appData.hospitals[appData.selectHospitalIndex]?.hospitalId ?? '',
           personalID: this.data.id,
-          name: this.data.name,
+          fullName: this.data.name,
           gender: this.data.gender === '男' ? 'Male' : 'Female',
           pidAddress: this.data.idAddr,
           homeAddress: this.data.addr,

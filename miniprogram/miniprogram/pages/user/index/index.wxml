@@ -16,8 +16,8 @@
       <mp-slideview data-index='{{idx}}'>
         <view class="slide" data-index="{{idx}}" data-id="{{obj.profileId}}" bindtap="toBookingList">
           <view class="todo-info">
-            <view class="todo-info_title">{{obj.gender}}</view>
-            <view class="todo-info_desc">{{obj.personalID}}</view>
+            <view class="todo-info_title">{{obj.fullName || ''}}</view>
+            <view class="todo-info_desc">{{obj.personalID + (obj.gender === 'Male' ? ' (男)' : ' (女)')}}</view>
             <view class="todo-info_desc">{{hospital.hospitalName}}</view>
             <view class="todo-info_desc">{{obj.homeAddress}}</view>
           </view>
