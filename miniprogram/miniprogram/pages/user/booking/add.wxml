@@ -10,8 +10,8 @@
     <view class="form-group">
       <view class="form-cell inline">
         <view class="form-label">体检人</view>
-        <picker range="{{profiles}}" range-key="profileId" bindchange="onChooseItem" class="picker-region input-style {{ profile ? '' : 'placeholder-style' }}">
-          {{ profile.profileId || '请选择' }}
+        <picker range="{{profiles}}" range-key="fullName" bindchange="onChooseItem" class="picker-region input-style {{ profile ? '' : 'placeholder-style' }}">
+          {{ profile.fullName || '请选择' }}
         </picker>
         <picker range="{{profiles}}" bindchange="onChooseItem">
           <image class="selector" src="../../../imgs/add/next.png" />
@@ -22,7 +22,7 @@
       <view class="form-group">
         <view class="form-cell inline">
           <view class="form-label">姓名</view>
-          <input class="form-cell_input input-style placeholder-style" disabled value="{{profile.name || profile.profileId}}"/>
+          <input class="form-cell_input input-style placeholder-style" disabled value="{{profile.fullName || profile.profileId}}"/>
         </view>
         <view class="form-cell inline">
           <view class="form-label">身份证</view>

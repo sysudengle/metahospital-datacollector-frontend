@@ -9,7 +9,7 @@
         <view class="slide">
           <view class="todo-info">
             <view class="todo-info_title">
-              {{ profile.name || profile.personalID }}
+              {{ profile.fullName || profile.personalID }}
             </view>
             <view class="todo-info_desc">{{ profile.personalID }}</view>
             <view class="todo-info_desc">{{ profile.gender === 'Male' ? '男' : '女' }}</view>
