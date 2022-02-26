@@ -53,6 +53,12 @@
           "pathName": "pages/doctor/index/index",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/doctor/input/index",
+          "query": "",
+          "scene": null
         }
       ]
     }

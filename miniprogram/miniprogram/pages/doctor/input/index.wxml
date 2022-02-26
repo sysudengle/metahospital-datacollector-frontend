@@ -1,17 +1,32 @@
-<view class="camera-panel">
-  <view class="form-group">
-    <view class="form-cell inline">
-      <view class="form-label">科室</view>
-      <picker range="{{departments}}" range-key="departmentName" bindchange="onChooseDepartment" class="picker-region input-style {{ department ? '' : 'placeholder-style' }}" value="initValue">
-        {{ department.departmentName || '请选择' }}
-      </picker>
-      <picker range="{{departments}}" bindchange="onChooseDepartment">
-        <image class="selector" src="../../../imgs/add/next.png" />
-      </picker>
-    </view>
+<!-- 录单页面 -->
+
+<view class="container">
+  <view wx:for="{{itemRenderList}}" class="form-group">
+    <!-- 数字输入 -->
+    <blockquote wx:if="{{item.itemType === 1}}">
+      <view class="form-cell inline">
+        <view class="form-label">{{item.itemName}}</view>
+        <input class="form-cell_input input-style flex-grow" data-index="{{index}}" data-itemid="{{item.itemId}}" type="number" placeholder="请输入" placeholder-class="form-cell_title-placeholder" bindinput="onInput"/>
+        <view class="suffix-desc">{{item.ext.unitName}}</view>
+      </view>
+    </blockquote>
+    <!-- 字符串输入 -->
+    <blockquote wx:if="{{item.itemType === 2}}">
+      <view class="form-cell inline align-start">
+        <view class="form-label">{{item.itemName}}</view>
+        <textarea class="form-cell_input textarea input-style" data-index="{{index}}" data-itemid="{{item.itemId}}" type="number" placeholder="请输入" placeholder-class="form-cell_title-placeholder" bindinput="onInput"/>
+      </view>
+    </blockquote>
+    <!-- 选择输入 -->
+    <blockquote wx:if="{{item.itemType === 3}}">
+      <mp-cells title="{{item.itemName}}">
+        <mp-checkbox-group prop="checkbox" multi="{{true}}" bindchange="checkboxChange">
+          <mp-checkbox wx:for="{{item.ext.optionList}}" wx:for-item="obj" wx:for-index="idx" wx:key="idx" label="{{obj.desc}}" value="{{obj.value}}"></mp-checkbox>
+        </mp-checkbox-group>
+      </mp-cells>
+    </blockquote>
   </view>
-  <view class="camera-btn-warpper">
-    <view class="camera-btn" bindtap="scan">扫码录单</view>
+  <view class="btn-wrapper" wx:if="{{itemRenderList.length > 0}}">
+    <button class="weui-btn" type="primary" bindtap="save">提交</button>
   </view>
 </view>
-<custom-tab-bar active="0"></custom-tab-bar>

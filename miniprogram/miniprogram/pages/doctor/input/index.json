@@ -2,7 +2,11 @@
   "usingComponents": {
     "e-icon": "/components/base/icon/icon",
     "e-suspension-button": "/components/button/suspension_button/suspension_button",
-    "custom-tab-bar": "/custom-tab-bar/index"
+    "custom-tab-bar": "/custom-tab-bar/index",
+    "mp-cells": "/miniprogram_npm/weui-miniprogram/cells/cells",
+    "mp-cell": "/miniprogram_npm/weui-miniprogram/cell/cell",
+    "mp-checkbox": "/miniprogram_npm/weui-miniprogram/checkbox/checkbox",
+    "mp-checkbox-group": "/miniprogram_npm/weui-miniprogram/checkbox-group/checkbox-group"
   },
-  "navigationBarTitleText": ""
+  "navigationBarTitleText": "科室录单"
 }

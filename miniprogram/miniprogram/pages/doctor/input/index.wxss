@@ -1,29 +1,3 @@
-.camera-panel {
-  width: 100%;
-  height: 100%;
-  box-sizing: border-box;
-  padding: 80px 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-}
-.camera-btn-warpper {
-  width: 100%;
-  text-align: center;
-  margin-top: 80px;
-}
-.camera-btn {
-  width: 50%;
-  height: 8vh;
-  line-height: 8vh;
-  margin: auto;
-  margin-top: 2vh;
-  color: white;
-  background: #57bead;
-  border-radius: 4rpx;
-  text-align: center;
-}
 .form-cell_title {
   margin-bottom: 10px;
   font-size: medium;
@@ -78,25 +52,35 @@
 
 .save {
   color: white;
-  background: #353535;
+  background: #57bead;
 }
 .mr-0 {
   margin-right: 0;
-}
-.picker-region {
-  flex: 1;
-  text-align: right;
-  padding-right: 10rpx;
 }
 .textarea {
   height: 10vh;
 }
 .form-label {
   width: 150rpx;
+  flex-shrink: 0;
 }
 .input-style {
   color: #5d6a87;
 }
 .placeholder-style {
   color: rgba(0,0,0,.3);
+}
+.weui-cells__group.weui-cells_checkbox .weui-cells__title {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #000;
+}
+.form-cell.inline.align-start {
+  align-items: flex-start;
+}
+.suffix-desc {
+  color: rgba(0,0,0,.3);
+}
+.flex-grow {
+  flex: 1;
 }

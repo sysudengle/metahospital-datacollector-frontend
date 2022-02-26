@@ -45,8 +45,8 @@ Page({
       department: this.data.departments[+value]
     })
   },
-
   scan() {
+    const self = this;
     if (!this.data.department) {
       wx.showToast({
         title: '请先选择科室信息',
@@ -58,16 +58,16 @@ Page({
     wx.scanCode({
       onlyFromCamera: true,
       success (res) {
-        console.log(res)
         const { result } = res;
+        self.goNext(result);
 
+        console.log(result)
       }
     })
   },
-
-  toInput(result) {
+  goNext(result) {
     wx.navigateTo({
-      url: `../input/index?${result}`
+      url: `../input/index?${result}&departmentId=${this.data.department.departmentId}`
     })
   }
 })
