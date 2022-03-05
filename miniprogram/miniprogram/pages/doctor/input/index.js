@@ -7,6 +7,8 @@ let hospitalId = null;
 let bookingId = null;
 let profileId = null;
 let departmentId = null;
+let dataflag = [];
+let dataSending = [];
 
 const itemTypesMap = {
   1: 'numberItemTypeId',
@@ -26,10 +28,10 @@ Page({
 
   onLoad(options) {
     console.log(options)
-    hospitalId = null;
-    bookingId = null;
-    profileId = null;
-    departmentId = null;
+    hospitalId = options.hospitalId;
+    bookingId = options.bookingId;
+    profileId = options.profileId;
+    departmentId = options.departmentId;
     this.loadData(options);
   },
 
@@ -38,10 +40,12 @@ Page({
     bookingId = null;
     profileId = null;
     departmentId = null;
+    dataflag = [];
+    dataSending = [];
   },
 
   async loadData(data) {
-    console.log()
+    console.log(data)
     const resp = await requestService.request({
       url: API.API_GET_ITEMS,
       method: 'POST',
@@ -50,7 +54,7 @@ Page({
       }
     });
     console.log(resp);
-    const items = resp?.data ?? []
+    const items = resp?.data ??[]
     if (items.length > 0) {
       this.setData({
         items
@@ -115,18 +119,128 @@ Page({
    */
   onInput(e) {
     console.log(e)
+    var itemId = e.currentTarget.dataset.itemid
+    var value = e.detail.value
+    this.dataUpdate({'itemId': itemId, 'value': value}, e)
   },
   /**
-   * 选择
+   * 数字文本输入检测校验码，之后可能会分开
+   */
+  onBlur(e) {
+    var i = e.currentTarget.dataset.index
+    var value = e.detail.value
+    var itemRenderList = this.data.itemRenderList[i]
+    if(value < itemRenderList.ext.min || value >itemRenderList.ext.max || value > itemRenderList.ext.maxLength){
+      dataflag[i] = false
+    }
+    else{dataflag[i] = true}
+  },
+
+  /**
+   * 选择 和校验码
    * @param {*} e 
    */
   checkboxChange(e) {
     console.log(e)
-  },
-  /**
-   * 数据提交
+    var i = e.currentTarget.dataset.index
+    var itemId = e.currentTarget.dataset.itemid
+    var value = e.detail.value
+    var itemRenderList = this.data.itemRenderList[i]
+    if(!itemRenderList.ext.selectNum || value.length == itemRenderList.ext.selectNum){
+      dataflag[i] = true
+      this.dataUpdate({'itemId': itemId, 'value': JSON.stringify(value.map(Number))},e)
+    }
+    else{
+      dataflag[i] = false
+      wx.showModal({
+        content: `请按照规范选择，请选择${itemRenderList.ext.selectNum}项`,
+        showCancel: false,
+        complete() {
+        }
+      })
+    }
+    
+},
+  /** 
+   * 数据存贮
    */
-  save() {
-    // TODO:
+  dataUpdate(data,e){
+    var i  = e.currentTarget.dataset.index
+    if(!dataSending[i] || dataSending[i].length <= 0){
+      dataSending.push(data)
+    }
+    else{
+      dataSending.splice(i, 1, data)
+    }
+    console.log(dataSending)
   },
+
+  /** 
+   * TODO 表单核查
+   */
+  checkItems(e){
+    console.log(e)
+  },
+
+  /** 
+   * 数据发送
+   */
+  async save(){
+    await wx.showLoading({
+      title: '请稍后',
+   })
+   setTimeout(() => {
+    wx.hideLoading({
+    success: (res) => {if(!dataflag || dataflag.length <=0){
+        wx.showModal({
+        content: '请填写表格',
+        showCancel: false,
+        complete() {
+        }
+      })
+    }
+    else{
+      var dataflagCount = 0
+      console.log(dataflag)
+      dataflag.forEach((element) => {dataflagCount += element})
+      if(dataflagCount < dataSending.length){
+          wx.showModal({
+          content: '存在不符合填写要求的体检项',
+          showCancel: false,
+          complete() {
+          }
+        })
+      }else{
+        this.sending(dataSending)
+      }
+    }},
+  })
+    }, 500);
+  },
+
+  async sending(data){
+    console.log(data)
+    const resp = await requestService.request({
+      url: API.API_SET_ITEMS,
+      method: 'POST',
+      data: {
+      hospitalId: hospitalId,
+      profileId: profileId,
+      bookingId: bookingId,
+      departmentId: departmentId,
+      itemValueDtos: data
+      }
+    });
+    console.log(resp)
+    if(resp.retcode == 200){
+      wx.showModal({
+        content: '成功提交',
+        showCancel: false,
+        complete() {
+          wx.navigateBack()
+        }
+      })
+    }
+
+  }
 })
