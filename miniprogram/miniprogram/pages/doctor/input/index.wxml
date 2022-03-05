@@ -1,12 +1,13 @@
 <!-- 录单页面 -->
 
 <view class="container">
+  
   <view wx:for="{{itemRenderList}}" class="form-group">
     <!-- 数字输入 -->
     <blockquote wx:if="{{item.itemType === 1}}">
       <view class="form-cell inline">
         <view class="form-label">{{item.itemName}}</view>
-        <input class="form-cell_input input-style flex-grow" data-index="{{index}}" data-itemid="{{item.itemId}}" type="number" placeholder="请输入" placeholder-class="form-cell_title-placeholder" bindinput="onInput"/>
+        <input class="form-cell_input input-style flex-grow" data-index="{{index}}" data-itemid="{{item.itemId}}" type="number" placeholder="记录:{{items[index].value}} 要求:{{item.ext.min}}~{{item.ext.max}}" placeholder-class="form-cell_title-placeholder" bindinput="onInput" bindblur="onBlur"/>
         <view class="suffix-desc">{{item.ext.unitName}}</view>
       </view>
     </blockquote>
@@ -20,13 +21,16 @@
     <!-- 选择输入 -->
     <blockquote wx:if="{{item.itemType === 3}}">
       <mp-cells title="{{item.itemName}}">
-        <mp-checkbox-group prop="checkbox" multi="{{true}}" bindchange="checkboxChange">
+        <mp-checkbox-group prop="checkbox" multi="{{true}}" data-index="{{index}}" data-itemid="{{item.itemId}}" bindchange="checkboxChange">
           <mp-checkbox wx:for="{{item.ext.optionList}}" wx:for-item="obj" wx:for-index="idx" wx:key="idx" label="{{obj.desc}}" value="{{obj.value}}"></mp-checkbox>
         </mp-checkbox-group>
       </mp-cells>
     </blockquote>
   </view>
   <view class="btn-wrapper" wx:if="{{itemRenderList.length > 0}}">
+      <label class="checkbox">
+        <checkbox value="cb" bindchange="checkItems"/>您已确认以上填写项目
+      </label>
     <button class="weui-btn" type="primary" bindtap="save">提交</button>
-  </view>
+    </view>
 </view>
